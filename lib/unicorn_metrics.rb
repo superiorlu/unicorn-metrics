@@ -1,6 +1,6 @@
 module UnicornMetrics
   class << self
-
+    # attr_accessor assigned
     # Returns the UnicornMetrics::Registry object
     #
     # @return [UnicornMetrics::Registry]
@@ -18,27 +18,30 @@ module UnicornMetrics
     # Enable/disable HTTP metrics. Includes defaults
     #
     # @param boolean [Boolean] to enable or disable default HTTP metrics
-    def http_metrics=(boolean=false)
-      return if @_assigned
-
-      if @http_metrics = boolean
+    def http_metrics=(boolean = false)
+      return if @assigned
+      @http_metrics = boolean
+      if http_metrics?
         registry.extend(UnicornMetrics::DefaultHttpMetrics)
         registry.register_default_http_counters
         registry.register_default_http_timers
       end
-      @_assigned = true
+      @assigned = true
     end
 
     # Used by the middleware to determine whether any HTTP metrics have been defined
     #
     # @return [Boolean] if HTTP metrics have been defined
-    def http_metrics? ; @http_metrics ; end
+    def http_metrics?
+      @http_metrics
+    end
 
     private
+
     # Delegate methods to UnicornMetrics::Registry
     #
     # http://robots.thoughtbot.com/post/28335346416/always-define-respond-to-missing-when-overriding
-    def respond_to_missing?(method_name, include_private=false)
+    def respond_to_missing?(method_name, include_private = false)
       registry.respond_to?(method_name, include_private)
     end
 
@@ -59,4 +62,3 @@ require 'unicorn_metrics/request_counter'
 require 'unicorn_metrics/request_timer'
 require 'unicorn_metrics/response_counter'
 require 'forwardable'
-
