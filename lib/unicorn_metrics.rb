@@ -1,5 +1,8 @@
 module UnicornMetrics
   class << self
+
+    @http_metrics = true
+
     # attr_accessor assigned
     # Returns the UnicornMetrics::Registry object
     #
@@ -15,25 +18,34 @@ module UnicornMetrics
       yield self
     end
 
+    def reset
+      registry.reset
+    end
+
+    def http_metrics
+      @http_metrics
+    end
+
     # Enable/disable HTTP metrics. Includes defaults
     #
     # @param boolean [Boolean] to enable or disable default HTTP metrics
-    def http_metrics=(boolean = false)
-      return if @assigned
+    def http_metrics=(boolean = true)
       @http_metrics = boolean
-      if http_metrics?
-        registry.extend(UnicornMetrics::DefaultHttpMetrics)
-        registry.register_default_http_counters
-        registry.register_default_http_timers
-      end
-      @assigned = true
+      register_default_http_metric
+    end
+
+    def register_default_http_metric
+      return unless http_metrics?
+      registry.extend(UnicornMetrics::DefaultHttpMetrics)
+      registry.register_default_http_counters
+      registry.register_default_http_timers
     end
 
     # Used by the middleware to determine whether any HTTP metrics have been defined
     #
     # @return [Boolean] if HTTP metrics have been defined
     def http_metrics?
-      @http_metrics
+      http_metrics
     end
 
     private
@@ -53,6 +65,7 @@ module UnicornMetrics
 end
 
 require 'raindrops'
+require 'oneapm_ci'
 require 'unicorn_metrics/registry'
 require 'unicorn_metrics/version'
 require 'unicorn_metrics/counter'
@@ -61,4 +74,6 @@ require 'unicorn_metrics/default_http_metrics'
 require 'unicorn_metrics/request_counter'
 require 'unicorn_metrics/request_timer'
 require 'unicorn_metrics/response_counter'
+require 'unicorn_metrics/response_counter'
+require 'unicorn_metrics/cloudinsight'
 require 'forwardable'

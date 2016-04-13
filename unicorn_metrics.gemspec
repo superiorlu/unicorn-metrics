@@ -6,10 +6,10 @@ require 'unicorn_metrics/version'
 Gem::Specification.new do |spec|
   spec.name          = 'unicorn_metrics'
   spec.version       = UnicornMetrics::VERSION
-  spec.authors       = ['Alan Cohen']
-  spec.email         = ['acohen@climate.com']
+  spec.authors       = ['Alan Cohen', 'luyignrui']
+  spec.email         = ['luyignrui@oneapm.com']
   spec.summary       = 'Metrics library for Rack applications using a preforking http server (i.e., Unicorn) '
-  spec.homepage      = 'http://www.climate.com'
+  spec.homepage      = 'http://www.oneapm.com/ci/feature.html'
   spec.files         = Dir['lib/**/*.rb'] + Dir['test/*']
   spec.executables   = spec.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})

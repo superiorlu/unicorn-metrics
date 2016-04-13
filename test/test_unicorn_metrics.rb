@@ -14,9 +14,10 @@ describe UnicornMetrics do
   end
 
   describe '::http_metrics=' do
+    before { UnicornMetrics.reset }
     context 'when arg is false' do
       it 'should not extend Registry with DefaultHttpCounters module' do
-        UnicornMetrics.stubs(:http_metrics?).returns(false)
+        UnicornMetrics.http_metrics = false
         UnicornMetrics.registry.wont_respond_to :register_default_http_counters
       end
     end

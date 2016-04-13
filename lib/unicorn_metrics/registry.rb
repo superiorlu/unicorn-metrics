@@ -13,7 +13,8 @@ module UnicornMetrics
       timer: 'Timer',
       response_counter: 'ResponseCounter',
       request_counter: 'RequestCounter',
-      request_timer: 'RequestTimer'
+      request_timer: 'RequestTimer',
+      cloudinsight: 'CloudInsight'
     }.freeze
 
     class << self
@@ -22,6 +23,10 @@ module UnicornMetrics
       # @return [Hash] a metric name to metric object
       def metrics
         @metrics ||= {}
+      end
+
+      def reset
+        @metrics = {}
       end
 
       # Register a new metric. Arguments are optional. See metric class definitions.

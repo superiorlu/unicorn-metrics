@@ -45,6 +45,7 @@ module UnicornMetrics
 
       UnicornMetrics::ResponseCounter.notify(status, path)
       UnicornMetrics::RequestTimer.notify(method, path, elapsed_time)
+      UnicornMetrics::Cloudinsight.notify(@registry, raindrops)
     end
 
     # Provide Raindrops::Middleware statistics in the metrics JSON response

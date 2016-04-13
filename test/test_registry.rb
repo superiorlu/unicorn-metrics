@@ -8,7 +8,8 @@ describe UnicornMetrics::Registry do
         timer: 'Timer',
         response_counter: 'ResponseCounter',
         request_counter: 'RequestCounter',
-        request_timer: 'RequestTimer'
+        request_timer: 'RequestTimer',
+        cloudinsight: 'CloudInsight'
       }
       UnicornMetrics::Registry::METRIC_TYPES.must_equal hash
     end
