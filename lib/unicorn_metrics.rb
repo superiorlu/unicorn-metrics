@@ -1,5 +1,7 @@
+#:nodoc:
 module UnicornMetrics
   class << self
+    attr_accessor :http_metrics # Enable/disable HTTP metrics. Includes defaults
 
     @http_metrics = true
 
@@ -18,19 +20,9 @@ module UnicornMetrics
       yield self
     end
 
-    def reset
-      registry.reset
-    end
-
-    def http_metrics
-      @http_metrics
-    end
-
-    # Enable/disable HTTP metrics. Includes defaults
-    #
-    # @param boolean [Boolean] to enable or disable default HTTP metrics
-    def http_metrics=(boolean = true)
-      @http_metrics = boolean
+    # egsiger default component
+    def default_register
+      registry.register(:cloudinsight, 'cloudinsight')
       register_default_http_metric
     end
 
@@ -46,6 +38,10 @@ module UnicornMetrics
     # @return [Boolean] if HTTP metrics have been defined
     def http_metrics?
       http_metrics
+    end
+
+    def reset
+      registry.reset
     end
 
     private

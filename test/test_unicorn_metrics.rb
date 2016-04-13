@@ -18,20 +18,24 @@ describe UnicornMetrics do
     context 'when arg is false' do
       it 'should not extend Registry with DefaultHttpCounters module' do
         UnicornMetrics.http_metrics = false
+        UnicornMetrics.default_register
         UnicornMetrics.registry.wont_respond_to :register_default_http_counters
       end
     end
 
     context 'when arg is true' do
-      before { UnicornMetrics.http_metrics = true }
+      before do
+        UnicornMetrics.http_metrics = true
+        UnicornMetrics.default_register
+      end
 
       it 'extends Registry with DefaultHttpMetrics module' do
         UnicornMetrics.registry.must_respond_to :register_default_http_counters
         UnicornMetrics.registry.must_respond_to :register_default_http_timers
       end
 
-      it 'registers the default http counters' do
-        UnicornMetrics.registry.metrics.keys.size.must_equal 9
+      it 'registers the default component counters' do
+        UnicornMetrics.registry.metrics.keys.size.must_equal 10
       end
     end
   end

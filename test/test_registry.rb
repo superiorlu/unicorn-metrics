@@ -9,7 +9,7 @@ describe UnicornMetrics::Registry do
         response_counter: 'ResponseCounter',
         request_counter: 'RequestCounter',
         request_timer: 'RequestTimer',
-        cloudinsight: 'CloudInsight'
+        cloudinsight: 'Cloudinsight'
       }
       UnicornMetrics::Registry::METRIC_TYPES.must_equal hash
     end

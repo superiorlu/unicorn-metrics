@@ -14,7 +14,7 @@ module UnicornMetrics
       response_counter: 'ResponseCounter',
       request_counter: 'RequestCounter',
       request_timer: 'RequestTimer',
-      cloudinsight: 'CloudInsight'
+      cloudinsight: 'Cloudinsight'
     }.freeze
 
     class << self
