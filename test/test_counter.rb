@@ -44,9 +44,9 @@ describe UnicornMetrics::Counter do
   describe '#as_json' do
     it 'returns the JSON representation of the object as a hash' do
       hash = {
-        @counter.name => {
-          'type'  => @counter.type,
-          'value' => @counter.value
+        @counter.name.to_sym => {
+          type: @counter.type,
+          value: @counter.value
         }
       }
 

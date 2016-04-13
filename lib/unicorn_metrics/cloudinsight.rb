@@ -1,7 +1,8 @@
 module UnicornMetrics
   #:nodoc:
   class Cloudinsight
-    attr_reader :statsd, :name, :metrics_data
+    attr_reader :statsd, :name
+
     def initialize(name)
       @name = name || 'cloudinsight'
       @statsd = OneapmCi::Statsd.new
@@ -14,15 +15,25 @@ module UnicornMetrics
 
     def self.notify(registry, raindrops)
       cloudinsights.each do |ci|
-        ci.metrics_data = registry.as_json.merge(raindrops)
-        ci.collect_data
+        ci.collect(registry.as_json.merge(raindrops))
       end
     end
 
-    def collect_data
-      metrics_data.each do |metric, value|
-        puts "metric: #{metric} value:#{value}"
+    def collect(metrics_data)
+      metrics_data.each do |metric, info|
+        next if filter?(info[:type])
+        metric_name = "#{UnicornMetrics.prefix}.#{metric}.#{info[:type]}"
+        statsd.gauge("#{metric_name}.sum", info[:sum]) if timer?(info[:type])
+        statsd.gauge(metric_name, info[:value])
       end
+    end
+
+    def filter?(metric_type)
+      metric_type == type
+    end
+
+    def timer?(metric_type)
+      metric_type == 'timer'
     end
 
     def type
@@ -31,9 +42,9 @@ module UnicornMetrics
 
     def as_json
       {
-        name => {
+        name.to_sym => {
           type: type,
-          data: metrics_data.size
+          status: 'running'
         }
 
       }

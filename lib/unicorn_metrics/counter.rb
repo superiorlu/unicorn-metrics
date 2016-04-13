@@ -34,9 +34,9 @@ module UnicornMetrics
     # @return [Hash] JSON representation of the object
     def as_json(*)
       {
-        name => {
-          'type'  => type,
-          'value' => value
+        name.to_sym => {
+          type: type,
+          value: value
         }
       }
     end

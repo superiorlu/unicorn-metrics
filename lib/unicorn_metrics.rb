@@ -1,9 +1,12 @@
 #:nodoc:
 module UnicornMetrics
   class << self
-    attr_accessor :http_metrics # Enable/disable HTTP metrics. Includes defaults
+    attr_writer :http_metrics # Enable/disable HTTP metrics. Includes defaults
+    attr_accessor :prefix # display metric by app name
 
-    @http_metrics = true
+    def http_metrics
+      @http_metrics.nil? ? true : @http_metrics
+    end
 
     # attr_accessor assigned
     # Returns the UnicornMetrics::Registry object
@@ -18,6 +21,10 @@ module UnicornMetrics
     # @yieldparam self [UnicornMetrics]
     def configure
       yield self
+    end
+
+    def prefix
+      @prefix || 'app'
     end
 
     # egsiger default component

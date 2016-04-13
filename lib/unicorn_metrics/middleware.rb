@@ -8,6 +8,7 @@ module UnicornMetrics
     # @param opts [Hash] options hash
     # @option opts [String] :metrics the HTTP endpoint that exposes the application metrics
     def initialize(app, opts = {})
+      UnicornMetrics.default_register
       @registry     = UnicornMetrics::Registry
       @metrics_path = opts[:metrics] || '/metrics'
       super

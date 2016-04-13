@@ -54,10 +54,10 @@ describe UnicornMetrics::Timer do
   describe '#as_json' do
     it 'returns the JSON representation of the object as a hash' do
       hash = {
-        @timer.name => {
-          'type'  => @timer.type,
-          'sum'   => @timer.sum,
-          'value' => @timer.count
+        @timer.name.to_sym => {
+          type: @timer.type,
+          sum: @timer.sum,
+          value: @timer.count
         }
       }
 

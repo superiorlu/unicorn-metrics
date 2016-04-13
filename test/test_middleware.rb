@@ -35,18 +35,18 @@ describe UnicornMetrics::Middleware do
     context 'when path matches the defined metrics path' do
       before do
         response = @middleware.call('PATH_INFO' => '/metrics')
-        @hash = JSON response[2][0]
+        @hash = JSON response[2][0], symbolize_names: true
       end
 
       it 'returns the metrics response JSON body' do
-        @hash.fetch('test_counter').must_equal @counter.as_json.fetch('test_counter')
+        @hash.fetch(:test_counter).must_equal @counter.as_json.fetch(:test_counter)
       end
 
       it 'includes raindrops middleware metrics' do
-        @hash.must_include 'raindrops.calling'
-        @hash.must_include 'raindrops.writing'
-        @hash.must_include 'raindrops.tcp.active'
-        @hash.must_include 'raindrops.tcp.queued'
+        @hash.must_include :'raindrops.calling'
+        @hash.must_include :'raindrops.writing'
+        @hash.must_include :'raindrops.tcp.active'
+        @hash.must_include :'raindrops.tcp.queued'
       end
     end
 
