@@ -76,4 +76,5 @@ require 'unicorn_metrics/request_timer'
 require 'unicorn_metrics/response_counter'
 require 'unicorn_metrics/response_counter'
 require 'unicorn_metrics/cloudinsight'
+require 'unicorn_metrics/railtie' if defined?(::Rails)
 require 'forwardable'

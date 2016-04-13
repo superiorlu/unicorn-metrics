@@ -10,18 +10,19 @@ Gem::Specification.new do |spec|
   spec.email         = ['luyignrui@oneapm.com']
   spec.summary       = 'Metrics library for Rack applications using a preforking http server (i.e., Unicorn) '
   spec.homepage      = 'http://www.oneapm.com/ci/feature.html'
+  spec.license       = 'MIT'
   spec.files         = Dir['lib/**/*.rb'] + Dir['test/*']
   spec.executables   = spec.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency('rake', '~> 10.1.0')
-  spec.add_development_dependency('minitest', '~> 5.8.4')
-  spec.add_development_dependency('minitest-reporters', '~> 1.1.8')
-  spec.add_development_dependency('guard', '~> 2.13.0')
-  spec.add_development_dependency('guard-minitest', '~> 2.4.4')
-  spec.add_development_dependency('mocha', '~> 1.1.0')
-  spec.add_development_dependency('rubocop', '~> 0.39.0')
+  spec.add_development_dependency('rake', '~> 10.1')
+  spec.add_development_dependency('minitest', '~> 5.8')
+  spec.add_development_dependency('minitest-reporters', '~> 1.1')
+  spec.add_development_dependency('guard', '~> 2.13')
+  spec.add_development_dependency('guard-minitest', '~> 2.4')
+  spec.add_development_dependency('mocha', '~> 1.1')
+  spec.add_development_dependency('rubocop', '~> 0.39')
   spec.add_development_dependency('pry', '~> 0.10.3')
 
   spec.add_dependency('raindrops', '~> 0.16.0')
