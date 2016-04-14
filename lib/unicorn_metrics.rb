@@ -2,13 +2,8 @@
 module UnicornMetrics
   class << self
     attr_writer :http_metrics # Enable/disable HTTP metrics. Includes defaults
-    attr_accessor :prefix # display metric by app name
-
-    def http_metrics
-      @http_metrics.nil? ? true : @http_metrics
-    end
-
-    # attr_accessor assigned
+    attr_accessor :app_name # display metric by app name
+    
     # Returns the UnicornMetrics::Registry object
     #
     # @return [UnicornMetrics::Registry]
@@ -23,11 +18,11 @@ module UnicornMetrics
       yield self
     end
 
-    def prefix
-      @prefix || 'app'
+    def app_name
+      @app_name || 'app'
     end
 
-    # egsiger default component
+    # regsiger default component
     def default_register
       registry.register(:cloudinsight, 'cloudinsight')
       register_default_http_metric
@@ -40,15 +35,15 @@ module UnicornMetrics
       registry.register_default_http_timers
     end
 
+    def http_metrics
+      @http_metrics.nil? ? true : @http_metrics
+    end
+
     # Used by the middleware to determine whether any HTTP metrics have been defined
     #
     # @return [Boolean] if HTTP metrics have been defined
     def http_metrics?
       http_metrics
-    end
-
-    def reset
-      registry.reset
     end
 
     private

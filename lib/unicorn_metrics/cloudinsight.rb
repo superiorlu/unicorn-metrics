@@ -22,7 +22,7 @@ module UnicornMetrics
     def collect(metrics_data)
       metrics_data.each do |metric, info|
         next if filter?(info[:type])
-        metric_name = "#{UnicornMetrics.prefix}.#{metric}.#{info[:type]}"
+        metric_name = "#{UnicornMetrics.app_name}.#{metric}.#{info[:type]}"
         statsd.gauge("#{metric_name}.sum", info[:sum]) if timer?(info[:type])
         statsd.gauge(metric_name, info[:value])
       end

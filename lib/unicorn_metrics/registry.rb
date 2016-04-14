@@ -25,10 +25,6 @@ module UnicornMetrics
         @metrics ||= {}
       end
 
-      def reset
-        @metrics = {}
-      end
-
       # Register a new metric. Arguments are optional. See metric class definitions.
       #
       # @param type [Symbol] underscored metric name

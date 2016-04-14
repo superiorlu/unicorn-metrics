@@ -14,7 +14,7 @@ describe UnicornMetrics do
   end
 
   describe '::http_metrics=' do
-    before { UnicornMetrics.reset }
+    before { UnicornMetrics.metrics.delete_if { true } }
     context 'when arg is false' do
       it 'should not extend Registry with DefaultHttpCounters module' do
         UnicornMetrics.http_metrics = false

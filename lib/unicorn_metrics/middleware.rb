@@ -56,13 +56,13 @@ module UnicornMetrics
     # * writing - the number of clients being written to on your machine
     def raindrops
       {
-        'raindrops.calling' => {
-          'type' => 'gauge',
-          'value' => @stats.calling
+        :'raindrops.calling' => {
+          type: 'gauge',
+          value: @stats.calling
         },
-        'raindrops.writing' => {
-          'type' => 'gauge',
-          'value' => @stats.writing
+        :'raindrops.writing' => {
+          type: 'gauge',
+          value: @stats.writing
         }
       }.merge(total_listener_stats)
     end
