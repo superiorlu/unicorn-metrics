@@ -13,9 +13,9 @@ module UnicornMetrics
     # let's store 3 significant digits after the decimal
     EXPONENT = -3
 
-    class Stats < Raindrops::Struct.new(:count, :mantissa); end
+    class Stats < Raindrops::Struct.new(:count, :mantissa, :consume); end
 
-    def_instance_delegators :@stats, :mantissa, :count
+    def_instance_delegators :@stats, :mantissa, :count, :consume
 
     # @param name [String] user-defined name
     def initialize(name)
@@ -33,6 +33,7 @@ module UnicornMetrics
 
       @stats.mantissa = mantissa + elapsed_time
       @stats.incr_count
+      @stats.consume = elapsed_time
     end
 
     # Reset the timer
@@ -52,7 +53,8 @@ module UnicornMetrics
         name.to_sym => {
           type: type,
           sum:  sum,
-          value: count
+          times: count,
+          consume: consume
         }
       }
     end

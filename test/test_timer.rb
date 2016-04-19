@@ -57,7 +57,8 @@ describe UnicornMetrics::Timer do
         @timer.name.to_sym => {
           type: @timer.type,
           sum: @timer.sum,
-          value: @timer.count
+          times: @timer.count,
+          consume: @timer.consume
         }
       }
 
