@@ -23,9 +23,14 @@ module UnicornMetrics
       metrics_data.each do |metric, info|
         next if filter?(info[:type])
         metric_name = "#{UnicornMetrics.app_name}.#{metric}.#{info[:type]}"
-        statsd.gauge("#{metric_name}.sum", info[:sum]) if timer?(info[:type])
+        collect_timer(metric_name, info) if timer?(info[:type])
         statsd.gauge(metric_name, info[:value])
       end
+    end
+
+    def collect_timer(metric_name, info)
+      statsd.gauge("#{metric_name}.sum", info[:sum])
+      statsd.gauge("#{metric_name}.consume", info[:consume])
     end
 
     def filter?(metric_type)
