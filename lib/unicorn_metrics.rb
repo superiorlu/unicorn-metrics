@@ -63,7 +63,7 @@ module UnicornMetrics
 end
 
 require 'raindrops'
-require 'oneapm_ci'
+require 'cloudinsight-sdk'
 require 'unicorn_metrics/registry'
 require 'unicorn_metrics/version'
 require 'unicorn_metrics/counter'

@@ -5,7 +5,7 @@ module UnicornMetrics
 
     def initialize(name)
       @name = name || 'cloudinsight'
-      @statsd = OneapmCi::Statsd.new
+      @statsd = CloudInsight::Statsd.new
       self.class.cloudinsights << self
     end
 

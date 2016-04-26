@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('pry', '~> 0.10.3')
 
   spec.add_dependency('raindrops', '~> 0.16.0')
-  spec.add_dependency('oneapm_ci', '~> 0.0.1')
+  spec.add_dependency('cloudinsight-sdk', '~> 0.0.1')
   spec.requirements << 'Preforking http server (i.e., Unicorn).'
   spec.required_ruby_version = '>= 1.9.3'
 end
