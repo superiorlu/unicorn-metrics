@@ -16,10 +16,10 @@ describe UnicornMetrics do
   describe '::http_metrics=' do
     before { UnicornMetrics.metrics.delete_if { true } }
     context 'when arg is false' do
-      it 'should not extend Registry with DefaultHttpCounters module' do
+      it 'should not include http metrics' do
         UnicornMetrics.http_metrics = false
         UnicornMetrics.default_register
-        UnicornMetrics.registry.wont_respond_to :register_default_http_counters
+        UnicornMetrics.metrics.keys.must_equal ['cloudinsight']
       end
     end
 
