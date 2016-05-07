@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/TheClimateCorporation/unicorn-metrics.png)](https://travis-ci.org/TheClimateCorporation/unicorn-metrics) [![Code Climate](https://codeclimate.com/github/TheClimateCorporation/unicorn-metrics.png)](https://codeclimate.com/github/TheClimateCorporation/unicorn-metrics)
+[![Build Status](https://travis-ci.org/superiorlu/unicorn_metrics.png)](https://travis-ci.org/superiorlu/unicorn_metrics) [![Code Climate](https://codeclimate.com/github/superiorlu/unicorn_metrics/badges/gpa.svg)](https://codeclimate.com/github/superiorlu/unicorn_metrics)
 
 # UnicornMetrics
 
