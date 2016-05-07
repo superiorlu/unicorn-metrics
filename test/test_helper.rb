@@ -8,3 +8,6 @@ alias context describe
 
 require 'minitest/reporters'
 Minitest::Reporters.use! Minitest::Reporters::ProgressReporter.new
+
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start

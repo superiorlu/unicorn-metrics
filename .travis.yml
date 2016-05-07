@@ -1,7 +1,8 @@
 language: ruby
 sudo: false
 rvm:
-  - "2.2.1"
+  - "2.2.3"
   - "2.3.0"
-script:
-  bundle exec rake test
+addons:
+  code_climate:
+    repo_token: 578233d2352083418c5476f39dbb456375028b791bbf4e694d93792966103f34

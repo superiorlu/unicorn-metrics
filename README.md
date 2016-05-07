@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/superiorlu/unicorn_metrics.png)](https://travis-ci.org/superiorlu/unicorn_metrics) [![Code Climate](https://codeclimate.com/github/superiorlu/unicorn_metrics/badges/gpa.svg)](https://codeclimate.com/github/superiorlu/unicorn_metrics)
+[![Build Status](https://travis-ci.org/superiorlu/unicorn_metrics.png)](https://travis-ci.org/superiorlu/unicorn_metrics) [![Code Climate](https://codeclimate.com/github/superiorlu/unicorn_metrics/badges/gpa.svg)](https://codeclimate.com/github/superiorlu/unicorn_metrics) [![Test Coverage](https://codeclimate.com/github/superiorlu/unicorn_metrics/badges/coverage.svg)](https://codeclimate.com/github/superiorlu/unicorn_metrics/coverage)
 
 # UnicornMetrics
 
